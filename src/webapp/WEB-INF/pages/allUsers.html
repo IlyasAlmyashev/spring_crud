@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users list</title>
+
+    <style type="text/css">
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-color: #ccc;
+        }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #f0f0f0;
+        }
+
+        .tg .tg-4eph {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <h2>Users list</h2>
+    <br/>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>PHONE NUMBER</th>
+            <th>EMAIL</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="msg : ${list}">
+            <td><a th:href="@{/users/{id}(id=${msg.getId()})}" th:text="${msg.getId()}"></a>
+            <td><a th:text="${msg.getFirstName()}"></a>
+            <td><a th:text="${msg.getLastName()}"></a>
+            <td><a th:text="${msg.getPhoneNumber()}"></a>
+            <td><a th:text="${msg.getEmail()}"></a>
+            <td><a th:href="@{/users/{id}/edit(id=${msg.getId})}">EDIT</a></td>
+            <td><a th:href="@{/users/{id}/delete(id=${msg.getId})}">DELETE</a></td>
+        </tr>
+    </table>
+    <h3><a th:href="@{/users/new}">Add new user</a></h3>
+    <h3><a href="/">Back</a></h3>
+</div>
+</body>
+</html>
